@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Students</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('students.index') }}">Students</a>
                 </li>
             </ul>
         </div>

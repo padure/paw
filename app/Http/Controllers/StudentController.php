@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    protected $studentsRepository;
+
+    public function __construct(Student $studentsRepository)
+    {
+        $this->studentsRepository = $studentsRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,10 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = $this->studentsRepository->get();
+        return view('frontend.students.index', [
+            'students'=> $students
+        ]);
     }
 
     /**
@@ -24,7 +33,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('frontend.students.create');
     }
 
     /**
@@ -35,7 +44,8 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->studentsRepository->create($request->all());
+        return redirect()->route('students.index');
     }
 
     /**
